@@ -6,10 +6,12 @@ import React, { useEffect, useState } from 'react'
 
 export default function AdminLayout({children}) {
     const [role, setRole] = useState(null);
+    const [isLoading , setIsLoading] = useState(false)
     const router = useRouter();
     const checkRole = async () => {
       const token = localStorage.getItem("token");
       try {
+        setIsLoading(true)
           const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/users/checkrole`, {
               headers: { Authorization: `Bearer ${token}` },
           });
@@ -33,7 +35,12 @@ export default function AdminLayout({children}) {
         verifyRole();
     }, [router]);
 
-    if (!role) return <p>Loading...</p>;
+    if(!role){
+      return <div className="min-h-[90vh] w-full flex justify-center items-center">
+        Loading...
+      </div>
+    }
+  
   return (
     <div>
       {children}

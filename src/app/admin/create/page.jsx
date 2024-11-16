@@ -5,9 +5,11 @@ import AdminLayout from "@/app/_components/admin-layout";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { TbLoaderQuarter } from "react-icons/tb";
 
 export default function Page() {
   const router = useRouter();
+  const [isLoading , setIsLoading] = useState(false)
   const [formData, setFormData] = useState({
     title: "",
     date: "",
@@ -26,17 +28,19 @@ export default function Page() {
     console.log("Create Event", formData);
     const token = localStorage.getItem("token");
     try {
+      setIsLoading(true)
       const isData = await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/admin/create`,formData, {
             headers: {
               Authorization: `Bearer ${token}`,
             }
         }
       );
+      router.push("/admin");
       console.log("isData ", isData);
       alert("Succesfully Event Created")
-      router.push("/admin");
-
+      setIsLoading(false)
     } catch (error) {
+      setIsLoading(false)
       console.log("Login Error:", error);
     }
   };
@@ -103,9 +107,9 @@ export default function Page() {
               <div>
                 <button
                   type="submit"
-                  className="flex w-full justify-center rounded-md border border-transparent py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-primary-main focus:ring-offset-2 bg-primary-main"
+                  className="flex w-full justify-center items-center gap-2 rounded-md border border-transparent py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-primary-main focus:ring-offset-2 bg-primary-main"
                 >
-                  Create Events
+                  Create Events {isLoading && <TbLoaderQuarter className="animate-spin" />}
                 </button>
               </div>
             </form>

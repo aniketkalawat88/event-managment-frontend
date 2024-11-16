@@ -5,10 +5,12 @@
   import { useRouter } from "next/navigation";
   import React, { useState } from "react";
   import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { TbLoaderQuarter } from "react-icons/tb";
 
   export default function Page() {
     const router = useRouter();
     const [isPass , setIsPass] = useState(true)
+    const [isLoading , setIsLoading] = useState(false)
     const [formData, setFormData] = useState({
       name: "",
       email: "",
@@ -36,10 +38,13 @@
       e.preventDefault();
       console.log("Form Data:", formData);
       try {
+        setIsLoading(true)
         const isData = await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/users/register` , formData)
         console.log(isData , "Data Submit")
         router.push("/login")
+        setIsLoading(false)
       } catch (error) {
+        setIsLoading(false)
         console.log("Error hai" , error)
         alert("Error ")
       }
@@ -121,9 +126,9 @@
               <div>
                 <button
                   type="submit"
-                  className="flex w-full justify-center rounded-md border border-transparent py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-primary-main focus:ring-offset-2 bg-primary-main"
+                  className="flex w-full justify-center items-center gap-2 rounded-md border border-transparent py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-primary-main focus:ring-offset-2 bg-primary-main"
                 >
-                  Register Account
+                  Register Account {isLoading && <TbLoaderQuarter className="animate-spin" />}
                 </button>
                 
                 <p className="mt-4 text-center">

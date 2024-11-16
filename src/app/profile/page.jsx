@@ -8,6 +8,7 @@ import React, { useEffect, useState } from "react";
 export default function Profile() {
   const router = useRouter();
   const [user, setUser] = useState({});
+  const [isLoading , setIsLoading] = useState(false)
 
   const isFetch = async () => {
     const token = localStorage.getItem("token");
@@ -17,15 +18,18 @@ export default function Profile() {
       return;
     }
     try {
+      setIsLoading(true)
       const isData = await axios.get(
         `${process.env.NEXT_PUBLIC_URL}/api/users/profile`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      console.log(isData.data.value, "Data done");
+      // console.log(isData.data.value, "Data done");
       setUser(isData.data.value);
+      setIsLoading(false)
     } catch (err) {
+      setIsLoading(false)
       console.log("error hai", err);
     }
   };
@@ -34,6 +38,12 @@ export default function Profile() {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if(isLoading){
+    return <div className="min-h-[80vh] w-full flex justify-center items-center">
+      Loading...
+    </div>
+  }
 
   const handleLogout = () => {
     localStorage.removeItem("token");

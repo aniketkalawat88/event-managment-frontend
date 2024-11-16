@@ -5,10 +5,12 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { TbLoaderQuarter } from "react-icons/tb";
 
 export default function Page() {
   const router = useRouter();
   const [isPass , setIsPass] = useState(true)
+  const [isLoading , setIsLoading] = useState(false)
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -25,15 +27,17 @@ export default function Page() {
     e.preventDefault();
     console.log("Login Form Data:", formData);
     try {
+      setIsLoading(true)
       const isData = await axios.post(
         `${process.env.NEXT_PUBLIC_URL}/api/users/login`,
         formData
       );
       console.log("Login Successful:", isData);
-
       localStorage.setItem("token", isData.data.Token); 
       router.push("/");
+      setIsLoading(false)
     } catch (error) {
+      setIsLoading(false)
       alert(error.response.data.message)
       console.log("Login Error:", error.response.data.message);
     }
@@ -93,9 +97,9 @@ export default function Page() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md border border-transparent py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-primary-main focus:ring-offset-2 bg-primary-main"
+                className="flex w-full justify-center rounded-md border border-transparent py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-primary-main focus:ring-offset-2 bg-primary-main items-center gap-2"
               >
-                Login
+                Login {isLoading && <TbLoaderQuarter className="animate-spin" />}
               </button>
               
               <p className="mt-4 text-center">
