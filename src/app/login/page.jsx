@@ -4,9 +4,11 @@
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function Page() {
   const router = useRouter();
+  const [isPass , setIsPass] = useState(true)
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -32,7 +34,8 @@ export default function Page() {
       localStorage.setItem("token", isData.data.Token); 
       router.push("/");
     } catch (error) {
-      console.log("Login Error:", error.isData?.data || error.message);
+      alert(error.response.data.message)
+      console.log("Login Error:", error.response.data.message);
     }
   };
 
@@ -74,15 +77,17 @@ export default function Page() {
               >
                 Password
               </label>
-              <div className="mt-1">
+              <div className="mt-1 relative">
                 <input
                   name="password"
-                  type="password"
+                  type={isPass ? "password" : "text"}
                   required
                   value={formData.password}
                   onChange={handleChange}
-                  className="px-2 py-3 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-primary-main focus:outline-none focus:ring-primary-main sm:text-sm"
+                  className="px-2 py-3 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-primary-main focus:outline-none focus:ring-primary-main sm:text-sm relative" 
                 />
+                
+                <span className=" absolute top-0 right-0 p-2 cursor-pointer text-2xl" onClick={()=> setIsPass(!isPass)}>{isPass ? <FaEye />: <FaEyeSlash /> }</span>
               </div>
             </div>
             <div>

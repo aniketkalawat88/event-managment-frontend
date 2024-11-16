@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -8,10 +8,9 @@ export default function Navbar() {
   const router = useRouter();
 
   const handleLogout = () => {
-    localStorage.removeItem("token")
-    router.push("/login")
-
-  }
+    localStorage.removeItem("token");
+    router.push("/login");
+  };
   return (
     <header className="sticky top-0 bg-white shadow">
       <div className="container flex flex-col sm:flex-row justify-between items-center mx-auto py-4 px-8">
@@ -35,14 +34,13 @@ export default function Navbar() {
           Event
         </div>
         <div className="flex mt-4 sm:mt-0">
-          <Link className="px-4" href="/#features">
+          <Link className="px-4" href="/#">
             Features
           </Link>
+          <Link href={"/#allevents"}>Events</Link>
+         
           <Link className="px-4" href="/#services">
             Services
-          </Link>
-          <Link className="px-4" href="/#stats">
-            Stats
           </Link>
           <Link className="px-4" href="/#testimonials">
             Testimonials
@@ -50,21 +48,16 @@ export default function Navbar() {
           <Link className="px-4" href="/admin">
             Admin
           </Link>
+          
         </div>
         <div className="hidden md:block">
-          <button 
-          type="submit"
-          onClick={handleLogout}
+          <button
+            type="submit"
+            onClick={handleLogout}
             className=" py-3 px-8 text-sm bg-teal-500 hover:bg-teal-600 rounded text-white "
           >
             Logout
           </button>
-          {/* <Link
-            href="#allevents"
-            className=" py-3 px-8 text-sm bg-teal-500 hover:bg-teal-600 rounded text-white "
-          >
-            View All Events
-          </Link> */}
         </div>
       </div>
     </header>

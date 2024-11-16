@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 export default function HeroSection() {
@@ -12,12 +13,12 @@ export default function HeroSection() {
             Discover upcoming events, RSVP, and be a part of unforgettable experiences happening near you.
           </p>
           <p className="mt-8 md:mt-12">
-            {/* <button
-              type="button"
+            <Link
+              href='/#allevents'
               className="py-4 px-12 bg-teal-500 hover:bg-teal-600 rounded text-white"
             >
               View All Events
-            </button> */}
+            </Link>
           </p>
           <p className="mt-4 text-gray-600">Browse and RSVP to your favorite events now!</p>
         </div>

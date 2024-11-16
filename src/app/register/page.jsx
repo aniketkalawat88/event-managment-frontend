@@ -4,9 +4,11 @@
   import axios from "axios";
   import { useRouter } from "next/navigation";
   import React, { useState } from "react";
+  import { FaEye, FaEyeSlash } from "react-icons/fa";
 
   export default function Page() {
     const router = useRouter();
+    const [isPass , setIsPass] = useState(true)
     const [formData, setFormData] = useState({
       name: "",
       email: "",
@@ -14,10 +16,20 @@
     });
 
     const handleChange = (e) => {
-      setFormData({
-        ...formData,
-        [e.target.name]: e.target.value,
-      });
+      if(e.target.name === "name"){
+        setFormData({
+          ...formData,
+          [e.target.name]:e.target.value.replace(/[^a-z ]/gi, ""),
+        })
+      }
+      else{
+        setFormData({
+          ...formData,
+          [e.target.name]:e.target.value,
+        })
+  
+      }
+  
     };
 
     const handleSubmit = async (e) => {
@@ -94,15 +106,16 @@
                 >
                   Password
                 </label>
-                <div className="mt-1">
+                <div className="mt-1 relative">
                   <input
                     name="password"
-                    type="password"
+                    type={isPass ? "password" : "text"}
                     required
                     value={formData.password}
                     onChange={handleChange}
-                    className="px-2 py-3 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-primary-main focus:outline-none focus:ring-primary-main sm:text-sm"
+                    className="px-2 py-3 mt-1 block w-full rounded-md relative border border-gray-300 shadow-sm focus:border-primary-main focus:outline-none focus:ring-primary-main sm:text-sm"
                   />
+                  <span className=" absolute top-0 right-0 p-2 cursor-pointer text-2xl" onClick={()=> setIsPass(!isPass)}>{isPass ? <FaEye />: <FaEyeSlash /> }</span>
                 </div>
               </div>
               <div>
