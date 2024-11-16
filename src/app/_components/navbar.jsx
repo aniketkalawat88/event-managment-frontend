@@ -9,15 +9,11 @@ export default function Navbar() {
   const path = usePathname();
   const arr = [
     {
-      name:'Home',
+      name:'All Events',
       link:'/'
     },
     {
-      name:'All Events',
-      link:'/event'
-    },
-    {
-      name:'Attend Events',
+      name:'Your Events',
       link:'/events-register'
     },
     {
@@ -27,6 +23,10 @@ export default function Navbar() {
     {
       name:'Admin',
       link:'/admin'
+    },
+    {
+      name:"About Us",
+      link:"about-us"
     },
   ]
 
@@ -56,10 +56,10 @@ export default function Navbar() {
           </div>
           Event
         </div>
-        <div className="flex mt-4 sm:mt-0">
+        <div className="flex mt-4 sm:mt-0 text-center">
           {
             arr.map((ele,i) => (
-            <Link key={i} className={`px-4 ${ele.link === path ? "text-primary-main" : ""}`} href={ele.link}>
+            <Link key={i} className={`sm:px-4 px-2 ${ele.link === path ? "text-primary-main" : ""}`} href={ele.link}>
             {ele.name}
           </Link>
 

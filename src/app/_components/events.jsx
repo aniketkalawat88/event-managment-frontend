@@ -43,13 +43,13 @@ export default function Events() {
   };
 
   return (
-    <div id="allevents" className="p-6 pt-20">
-      <h1 className="text-4xl font-bold py-8 text-primary-main text-center">
+    <div className="p-6 pt-10 bg-gray-100 min-h-screen">
+      <h1 className="text-2xl font-bold mb-4 text-primary-main">
         All Events
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {events.map((ele, i) => (
-          <div key={i} className="border p-4 rounded shadow">
+          <div key={i} className="border p-4 rounded shadow bg-white">
             <p className="float-right px-2 font-bold">Date: <span className="font-normal"> {new Date(ele.date).toLocaleDateString()}</span></p>
             <p className="text-lg font-bold">Event Location: <span className="font-normal">{ele.location}</span></p>
             <p className="float-right px-2 font-bold">Time: <span className="font-normal"> {new Date(ele.date).toLocaleTimeString()}</span></p>

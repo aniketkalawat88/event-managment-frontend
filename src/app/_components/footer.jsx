@@ -3,24 +3,38 @@ import Link from 'next/link'
 import React from 'react'
 
 export default function Footer() {
+  const arr = [
+    {
+      name:'All Events',
+      link:'/'
+    },
+    {
+      name:'Your Events',
+      link:'/events-register'
+    },
+    {
+      name:'Profile',
+      link:'/profile'
+    },
+    {
+      name:'Admin',
+      link:'/admin'
+    },
+    {
+      name:"About Us",
+      link:"about-us"
+    },
+  ]
   return (
     <footer className="flex flex-col space-y-10 justify-center m-10">
   <nav className="flex justify-center flex-wrap gap-6 text-gray-500 font-medium">
-    <Link className="hover:text-gray-900" href="#home">
-      Home
+    {
+      arr.map((ele,i) => (
+      <Link key={i} className={`hover:text-gray-900}`} href={ele.link}>
+      {ele.name}
     </Link>
-    <Link className="hover:text-gray-900" href="#features">
-    Features
-    </Link>
-    <Link className="hover:text-gray-900" href="#services">
-    Services
-    </Link>
-    <Link className="hover:text-gray-900" href="#stats">
-    Stats
-    </Link>
-    <Link className="hover:text-gray-900" href="#testimonials">
-    Testimonials
-    </Link>
+      ))
+    }
   </nav>
   <div className="flex justify-center space-x-5">
     <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
