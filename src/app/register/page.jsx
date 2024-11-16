@@ -46,7 +46,7 @@
     };
 
     return (
-      <div className="bg-secondary-main flex h-screen items-center justify-center px-4 sm:px-6 lg:px-8">
+      <div className="bg-primary-main flex h-screen items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
           <div className="bg-white-main shadow-md rounded-md p-6">
             <img

@@ -1,11 +1,34 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 
 export default function Navbar() {
   const router = useRouter();
+  const path = usePathname();
+  const arr = [
+    {
+      name:'Home',
+      link:'/'
+    },
+    {
+      name:'All Events',
+      link:'/event'
+    },
+    {
+      name:'Attend Events',
+      link:'/events-register'
+    },
+    {
+      name:'Profile',
+      link:'/profile'
+    },
+    {
+      name:'Admin',
+      link:'/admin'
+    },
+  ]
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -34,20 +57,14 @@ export default function Navbar() {
           Event
         </div>
         <div className="flex mt-4 sm:mt-0">
-          <Link className="px-4" href="/#">
-            Features
+          {
+            arr.map((ele,i) => (
+            <Link key={i} className={`px-4 ${ele.link === path ? "text-primary-main" : ""}`} href={ele.link}>
+            {ele.name}
           </Link>
-          <Link href={"/#allevents"}>Events</Link>
-         
-          <Link className="px-4" href="/#services">
-            Services
-          </Link>
-          <Link className="px-4" href="/#testimonials">
-            Testimonials
-          </Link>
-          <Link className="px-4" href="/admin">
-            Admin
-          </Link>
+
+            ))
+          }
           
         </div>
         <div className="hidden md:block">
