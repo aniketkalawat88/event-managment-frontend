@@ -8,7 +8,7 @@ export default function EventTable() {
 
   const fetchEvents = async () => {
     try {
-        const res = await axios.get(`http://localhost:5000/api/admin/allevent`);
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/admin/allevent`);
         console.log(res.data.value)
         setIsVal(res.data.value)
     } catch (error) {
@@ -18,7 +18,7 @@ export default function EventTable() {
   const deleteEvent = async (eventId) => {
     const token = localStorage.getItem("token");
       try {
-          await axios.delete(`http://localhost:5000/api/admin/${eventId}`, {
+          await axios.delete(`${process.env.NEXT_PUBLIC_URL}/api/admin/${eventId}`, {
               headers: { Authorization: `Bearer ${token}` },
           });
           setIsVal(IsVal.filter((e) => e._id !== eventId));

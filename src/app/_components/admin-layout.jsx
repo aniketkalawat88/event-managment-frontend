@@ -10,7 +10,7 @@ export default function AdminLayout({children}) {
     const checkRole = async () => {
       const token = localStorage.getItem("token");
       try {
-          const res = await axios.get(`http://localhost:5000/api/users/checkrole`, {
+          const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/users/checkrole`, {
               headers: { Authorization: `Bearer ${token}` },
           });
           console.log(res.data.role)

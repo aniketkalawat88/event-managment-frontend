@@ -18,7 +18,7 @@ export default function Profile() {
     }
     try {
       const isData = await axios.get(
-        "http://localhost:5000/api/users/profile",
+        `${process.env.NEXT_PUBLIC_URL}/api/users/profile`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

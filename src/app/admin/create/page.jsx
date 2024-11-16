@@ -26,7 +26,7 @@ export default function Page() {
     console.log("Create Event", formData);
     const token = localStorage.getItem("token");
     try {
-      const isData = await axios.post(`http://localhost:5000/api/admin/create`,formData, {
+      const isData = await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/admin/create`,formData, {
             headers: {
               Authorization: `Bearer ${token}`,
             }

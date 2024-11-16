@@ -14,7 +14,7 @@ export default function EventList() {
         }
         try {
           const isData = await axios.get(
-            "http://localhost:5000/api/users/rsvp-list",
+            `${process.env.NEXT_PUBLIC_URL}/api/users/rsvp-list`,
             {
               headers: { Authorization: `Bearer ${token}` },
             }

@@ -36,7 +36,7 @@
       e.preventDefault();
       console.log("Form Data:", formData);
       try {
-        const isData = await axios.post(`http://localhost:5000/api/users/register` , formData)
+        const isData = await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/users/register` , formData)
         console.log(isData , "Data Submit")
         router.push("/login")
       } catch (error) {

@@ -26,7 +26,7 @@ export default function Page() {
     console.log("Login Form Data:", formData);
     try {
       const isData = await axios.post(
-        `http://localhost:5000/api/users/login`,
+        `${process.env.NEXT_PUBLIC_URL}/api/users/login`,
         formData
       );
       console.log("Login Successful:", isData);

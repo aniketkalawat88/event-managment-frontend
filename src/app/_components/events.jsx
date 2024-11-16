@@ -8,7 +8,7 @@ export default function Events() {
 
   const fetchEvents = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/admin/allevent`);
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/admin/allevent`);
       console.log(res.data.value);
       return res.data.value;
     } catch (error) {
@@ -20,7 +20,7 @@ export default function Events() {
     const token = await localStorage.getItem("token");
     try {
       const data = await axios.post(
-        `http://localhost:5000/api/users/rsvp/${eventId}`,
+        `${process.env.NEXT_PUBLIC_URL}/api/users/rsvp/${eventId}`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
