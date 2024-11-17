@@ -13,7 +13,6 @@ export default function Profile() {
   const isFetch = async () => {
     const token = localStorage.getItem("token");
     if (!token) {
-      alert("Please log in to access your profile.");
       router.push("/login");
       return;
     }

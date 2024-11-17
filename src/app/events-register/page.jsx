@@ -1,15 +1,17 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 export default function EventList() {
+  const router = useRouter();
   const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const isFetch = async () => {
     const token = localStorage.getItem("token");
     if (!token) {
-      alert("Please log in to access your profile.");
       router.push("/login");
       return;
     }
