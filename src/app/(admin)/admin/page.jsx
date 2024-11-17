@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import React from "react";
-import EventTable from "../_components/event-table";
-import AdminLayout from "../_components/admin-layout";
+import EventTable from "../../_components/event-table";
+import AdminLayout from "../../_components/admin-layout";
 
 export default function Admin() {
   return (

@@ -5,11 +5,11 @@ import React from 'react'
 export default function Footer() {
   const arr = [
     {
-      name:'All Events',
+      name:'Home',
       link:'/'
     },
     {
-      name:'Your Events',
+      name:'My Events',
       link:'/events-register'
     },
     {
@@ -21,8 +21,8 @@ export default function Footer() {
       link:'/admin'
     },
     {
-      name:"About Us",
-      link:"about-us"
+      name:"About",
+      link:"/about-us"
     },
   ]
   return (

@@ -1,7 +1,7 @@
 import React from "react";
-import HeroSection from "../_components/hero-section";
-import MainFeature from "../_components/main-feature";
-import Testimonial from "../_components/testimonal";
+import HeroSection from "../../_components/hero-section";
+import MainFeature from "../../_components/main-feature";
+import Testimonial from "../../_components/testimonal";
 
 export default function page() {
   return (

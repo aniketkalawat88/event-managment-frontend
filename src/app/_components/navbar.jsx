@@ -9,11 +9,11 @@ export default function Navbar() {
   const path = usePathname();
   const arr = [
     {
-      name:'All Events',
+      name:'Home',
       link:'/'
     },
     {
-      name:'Your Events',
+      name:'My Events',
       link:'/events-register'
     },
     {
@@ -25,7 +25,7 @@ export default function Navbar() {
       link:'/admin'
     },
     {
-      name:"About Us",
+      name:"About",
       link:"/about-us"
     },
   ]
@@ -38,7 +38,7 @@ export default function Navbar() {
     <header className="sticky top-0 bg-white shadow">
       <div className="container flex flex-col sm:flex-row justify-between items-center mx-auto py-4 px-8">
         <div className="flex items-center text-2xl">
-          <div className="w-12 mr-3">
+          <div className="w-12 mr-3 rotate-90">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
               <path
                 fill="#BEE3F8"
@@ -54,12 +54,12 @@ export default function Navbar() {
               ></path>
             </svg>
           </div>
-          Event
+          {/* Event */}
         </div>
-        <div className="flex mt-4 sm:mt-0 text-center">
+        <div className="flex mt-4 sm:mt-0 md:text-base text-sm text-center max-sm:justify-around max-sm:w-full">
           {
             arr.map((ele,i) => (
-            <Link key={i} className={`sm:px-4 px-2 ${ele.link === path ? "text-primary-main" : ""}`} href={ele.link}>
+            <Link key={i} className={`sm:px-4  ${ele.link === path ? "text-primary-main" : ""}`} href={ele.link}>
             {ele.name}
           </Link>
 

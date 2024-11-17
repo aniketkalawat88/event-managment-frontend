@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect } from "react";
-import Events from "./_components/events";
+import Events from "../_components/events";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
