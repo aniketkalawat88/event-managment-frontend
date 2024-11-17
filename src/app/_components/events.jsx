@@ -89,7 +89,7 @@ export default function Events() {
               onClick={() => openModal(ele._id)}
               className="mt-2 bg-primary-main text-white px-4 py-2 rounded flex justify-center items-center gap-2"
             >
-              Click To attend Seminar 
+              Book Event
             </button>
           </div>
         ))}
